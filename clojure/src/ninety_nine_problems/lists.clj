@@ -21,3 +21,28 @@
         nil
         head1)
       (recur (conj tail head2)))))
+
+; P03
+(defn take-nth'
+  "Find the K'th element of a list"
+  [col k]
+  (let [[head & tail] col]
+    (if (<= k 1)
+      head
+      (recur tail (dec k)))))
+
+; P04
+(defn count'
+  "Find the number of elements of a list"
+  [col]
+  (if (empty? col)
+    0
+    (reduce (fn [a b] (+ a 1)) 0 col)))
+
+; P05
+(defn reverse'
+  "Reverse a list"
+  [col]
+  (if (empty? col)
+    nil
+    (reduce conj nil col)))
