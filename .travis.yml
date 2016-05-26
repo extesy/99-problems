@@ -1,0 +1,2 @@
+language: clojure
+before_script: cd clojure

@@ -46,3 +46,20 @@
   (if (empty? col)
     nil
     (reduce conj nil col)))
+
+; P06
+(defn palindrome?
+  "Find out whether a list is a palindrome"
+  [col]
+  (= col (reverse col)))
+
+; P07
+(defn flatten'
+  "Flatten a nested list structure"
+  [col]
+  (if (empty? col)
+    nil
+    (let [[head & tail] col]
+      (if (seq? head)
+        (concat (flatten' head) (flatten' tail))
+        (conj (flatten' tail) head)))))

@@ -2,6 +2,8 @@
   (:require [clojure.test :refer :all]
             [ninety-nine-problems.lists :refer :all]))
 
+; Tests are borrowed from https://github.com/AustinRochford/99-problems-clojure/blob/master/test/ninety_nine_problems/lists_test.clj
+
 ; P01
 (deftest last'-test
   (is (= 3 (last' '(1 2 3)))))
@@ -57,3 +59,23 @@
 
 (deftest reverse'-test-empty
   (is (empty? (reverse' '()))))
+
+; P06
+(deftest palindrome?-test
+    (is (palindrome? '(1 2 1))))
+
+(deftest palindrome?-test-long
+    (is (palindrome? '(1 2 1 3 4 3 1 2 1))))
+
+(deftest palindrome?-test-empty
+    (is (palindrome? '())))
+
+(deftest palindrome?-test-false
+    (is (not (palindrome? '(1 2 3 2)))))
+
+; P07
+(deftest flatten'-test
+    (is (= '(1 2 3) (flatten' '((1) (2 (3)))))))
+
+(deftest flatten'-test-flat
+    (is (= '(1 2 3) (flatten' '(1 2 3)))))
