@@ -1,2 +1,2 @@
 language: clojure
-before_script: cd clojure
+before_install: cd clojure
