@@ -79,3 +79,13 @@
 
 (deftest flatten'-test-flat
     (is (= '(1 2 3) (flatten' '(1 2 3)))))
+
+; P08
+(deftest dedupe'-test
+    (is (= '(1 2 3) (dedupe' '(1 2 2 3 3 3)))))
+
+(deftest dedupe'-test-nodups
+    (is (= '(1 2 3) (dedupe' '(1 2 3)))))
+
+(deftest dedupe'-test-repeat
+    (is (= '(1 2 1) (dedupe' '(1 1 2 1 1)))))

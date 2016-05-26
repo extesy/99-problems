@@ -63,3 +63,15 @@
       (if (seq? head)
         (concat (flatten' head) (flatten' tail))
         (conj (flatten' tail) head)))))
+
+; P08
+(defn dedupe'
+  "Eliminate consecutive duplicates of list elements"
+  [col]
+  (reverse'
+    (reduce
+      (fn [col item]
+        (if (= (first col) item)
+          col
+          (conj col item)))
+      nil col)))
