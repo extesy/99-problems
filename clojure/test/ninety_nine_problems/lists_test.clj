@@ -89,3 +89,33 @@
 
 (deftest dedupe'-test-repeat
     (is (= '(1 2 1) (dedupe' '(1 1 2 1 1)))))
+
+; P09
+(deftest pack-test
+  (is (= '((1) (2 2) (3 3 3)) (pack '(1 2 2 3 3 3)))))
+
+(deftest pack-test-singles
+  (is (= '((1) (2) (3)) (pack '(1 2 3)))))
+
+(deftest pack-test-repeat
+  (is (= '((1 1) (2) (1 1)) (pack '(1 1 2 1 1)))))
+
+; P10
+(deftest encode-test
+  (is (= '([1 1] [2 2] [3 3]) (encode '(1 2 2 3 3 3)))))
+
+(deftest encode-test-singles
+  (is (= '([1 1] [1 2] [1 3]) (encode '(1 2 3)))))
+
+(deftest encode-test-repeat
+  (is (= '([2 1] [1 2] [2 1]) (encode '(1 1 2 1 1)))))
+
+; P11
+(deftest encode'-test
+  (is (= '(1 [2 2] [3 3]) (encode' '(1 2 2 3 3 3)))))
+
+(deftest encode'-test-singles
+  (is (= '(1 2 3) (encode' '(1 2 3)))))
+
+(deftest encode'-test-repeat
+  (is (= '([2 1] 2 [2 1]) (encode' '(1 1 2 1 1)))))

@@ -75,3 +75,40 @@
           col
           (conj col item)))
       nil col)))
+
+; Helper function for P09-P11
+(defn combine [f col]
+  (let [[result group]
+    (reduce
+      (fn [[result group] item] ; keep running values of result and current group
+        (if (or
+              (empty? group)
+              (= (first group) item)) ; separate groups by element equality
+          (list result (conj group item)) ; keep adding to the same group
+          (list (conj result (f group)) (list item)))) ; append processed group to a result
+      '([] nil) col)]
+    (conj result (f group)))) ; process the last group
+
+; P09
+(defn pack
+  "Pack consecutive duplicates of list elements into sublists"
+  [col]
+  (combine identity col))
+
+; P10
+(defn encode
+  "Run-length encoding of a list"
+  [col]
+  (combine #(list (count' %1) (first %1))
+           col))
+
+; P11
+(defn encode'
+  "Modified run-length encoding"
+  [col]
+  (combine #(let [size (count' %1)
+                  item (first %1)]
+             (if (= size 1)
+               item
+               (list size item)))
+           col))
