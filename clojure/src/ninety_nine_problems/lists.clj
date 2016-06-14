@@ -44,7 +44,7 @@
   "Reverse a list"
   [col]
   (if (empty? col)
-    nil
+    col
     (reduce conj nil col)))
 
 ; P06
@@ -79,14 +79,14 @@
 ; Helper function for P09-P11
 (defn combine [f col]
   (let [[result group]
-    (reduce
-      (fn [[result group] item] ; keep running values of result and current group
-        (if (or
-              (empty? group)
-              (= (first group) item)) ; separate groups by element equality
-          (list result (conj group item)) ; keep adding to the same group
-          (list (conj result (f group)) (list item)))) ; append processed group to a result
-      '([] nil) col)]
+        (reduce
+          (fn [[result group] item] ; keep running values of result and current group
+            (if (or
+                  (empty? group)
+                  (= (first group) item)) ; separate groups by element equality
+              (list result (conj group item)) ; keep adding to the same group
+              (list (conj result (f group)) (list item)))) ; append processed group to a result
+          '([] nil) col)]
     (conj result (f group)))) ; process the last group
 
 ; P09
@@ -112,3 +112,28 @@
                item
                (list size item)))
            col))
+
+; P12
+(defn decode
+  "Decode a run-length encoded list"
+  [col]
+  (flatten'
+    (map #(if
+           (sequential? %1)
+           (repeat (first %1) (last %1))
+           %1) col)))
+
+; P13 - seems to be identical to P11 unless I misunderstand something
+
+; P14
+(defn duplicate
+  "Duplicate the elements of a list"
+  [col]
+  (reverse'
+    (reduce #(conj %1 %2 %2) '() col)))
+
+; P15
+(defn replicate'
+  "Replicate the elements of a list a given number of times"
+  [col n]
+  (reduce #(concat %1 (repeat n %2)) '() col))
