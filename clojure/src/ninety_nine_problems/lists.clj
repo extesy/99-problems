@@ -137,3 +137,9 @@
   "Replicate the elements of a list a given number of times"
   [col n]
   (reduce #(concat %1 (repeat n %2)) '() col))
+
+; P16
+(defn drop-every
+  "Drop every N'th element from a list"
+  [col n]
+  (flatten' (partition (dec n) n '() col)))
