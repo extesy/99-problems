@@ -37,7 +37,7 @@
   [col]
   (if (empty? col)
     0
-    (reduce (fn [a b] (+ a 1)) 0 col)))
+    (reduce (fn [a _] (+ a 1)) 0 col)))
 
 ; P05
 (defn reverse'
